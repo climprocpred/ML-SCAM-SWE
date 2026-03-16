@@ -23,10 +23,20 @@ sys.path.insert(0, str(swe_dir))
 
 import pdoc
 
+# Exclude Jupyter-style scripts that execute code at module level and cannot
+# be safely imported by pdoc.
+EXCLUDE = {
+    "create_swe_gif",
+    "filtered_rollout",
+    "ic_noise_sandbox",
+    "plot_swe_results",
+    "run_solver_from_nc",
+}
+
 modules = sorted(
     f.stem
     for f in swe_dir.glob("*.py")
-    if not f.stem.startswith("_")
+    if not f.stem.startswith("_") and f.stem not in EXCLUDE
 )
 
 output_dir = ROOT / "docs"
