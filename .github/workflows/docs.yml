@@ -17,12 +17,15 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install system dependencies
+        run: sudo apt-get install -y libgeos-dev libproj-dev proj-data proj-bin
+
       - name: Install dependencies
         run: |
           pip install torch --index-url https://download.pytorch.org/whl/cpu
           pip install torch-harmonics
           pip install pdoc numpy xarray matplotlib tqdm zarr pandas scipy \
-                      scikit-image psutil wandb Pillow cftime
+                      scikit-image psutil wandb Pillow cftime cartopy
 
       - name: Build docs
         run: python build_docs.py
