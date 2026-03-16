@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml-scam-swe"
+version = "0.1.0"
+description = "Shallow Water Equations ML emulator using DiSCO and latent-space models"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "torch>=2.0",
+    "numpy",
+    "xarray",
+    "matplotlib",
+    "tqdm",
+    "torch-harmonics",
+    "zarr",
+    "pandas",
+    "scipy",
+    "scikit-image",
+    "psutil",
+    "wandb",
+    "Pillow",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pdoc",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["swe*"]
